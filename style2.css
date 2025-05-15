@@ -1,0 +1,79 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: #f4f4f9;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.left-section {
+    width: 250px;
+    background: #ea24c5;
+    color: rgb(255, 255, 255);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;  
+}
+
+.logo img {
+    width: 50px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar .item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.sidebar .item:hover, .sidebar .item#active {
+    background: #f4f2f2f5;
+}
+
+/* Main content */
+main {
+    flex: 1;
+    padding: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #7f8c8d;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .left-section {
+        width: 200px;
+    }
+}

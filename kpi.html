@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Karyawan</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Grade Karyawan Bulan Februari</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID Pegawai</th>
+                <th>Petugas</th>
+                <th>Progress</th>
+                <th>Personal Skill</th>
+                <th>Attitude</th>
+                <th>Score</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTable">
+            <!-- Data akan dimasukkan di sini -->
+        </tbody>
+    </table>
+
+    <script>
+        const employees = [
+            { id: '201404 1 061', name: 'CHOIRUL UMAM', progress: 0, skill: 80, attitude: 80 },
+            { id: '201610 1 105', name: 'MUHAMAD SETIYADI', progress: -8.7, skill: 79, attitude: 80 },
+            { id: '201701 1 109', name: 'M. IVAN FAUZAN', progress: 17.4, skill: 79, attitude: 80 },
+            { id: '201809 1 191', name: 'ARNOLD JOSUA N', progress: -49.5, skill: 79, attitude: 80 },
+            { id: '201906 2 233', name: 'Alya Putri', progress: 24.5, skill: 79, attitude: 80 },
+            { id: '201911 2 263', name: 'Mufaroha', progress: 0, skill: 80, attitude: 80 },
+            { id: '202201 2 355', name: 'soliyah S.Ag', progress: -8.7, skill: 79, attitude: 80 },
+            { id: '202402 2 440', name: 'Siti Nurholis', progress: 17.4, skill: 79, attitude: 80 },
+            { id: '202402 2 444', name: 'Enti Ameliyani', progress: -49.5, skill: 79, attitude: 80 },
+            { id: '202406 1 507', name: 'FAJAR GILANG RAMADHAN', progress: 24.5, skill: 79, attitude: 80 },
+            { id: '202405 2 551', name: 'Nuranah', progress: 24.5, skill: 79, attitude: 80 },
+        ];
+
+        const weightProgress = 70;
+        const weightSkill = 15;
+        const weightAttitude = 15;
+
+        function calculateScore(progress, skill, attitude) {
+            return (((progress * weightProgress) / 100) + ((skill * weightSkill) / 100) + ((attitude * weightAttitude) / 100)) / 100;
+        }
+
+        function getGrade(score) {
+            if (score >= 90) return 'A';
+            if (score >= 70) return 'B';
+            if (score >= 50) return 'C';
+            return 'D';
+        }
+
+        function populateTable() {
+            const tableBody = document.getElementById('employeeTable');
+            tableBody.innerHTML = '';
+            
+            employees.forEach((emp, index) => {
+                const score = calculateScore(emp.progress, emp.skill, emp.attitude) * 100;
+                const grade = getGrade(score);
+                
+                const row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td><input type="number" value="${emp.progress}" onchange="updateValue(${index}, 'progress', this.value)"></td>
+                    <td><input type="number" value="${emp.skill}" onchange="updateValue(${index}, 'skill', this.value)"></td>
+                    <td><input type="number" value="${emp.attitude}" onchange="updateValue(${index}, 'attitude', this.value)"></td>
+                    <td>${score.toFixed(1)}%</td>
+                    <td>${grade}</td>
+                </tr>`;
+                
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function updateValue(index, key, value) {
+            employees[index][key] = parseFloat(value);
+            populateTable();
+        }
+
+        populateTable();
+    </script>
+</body>
+</html>
+
+<!--ini buat database baru-->
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id VARCHAR(20) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    progress FLOAT NOT NULL,
+    skill FLOAT NOT NULL,
+    attitude FLOAT NOT NULL
+);

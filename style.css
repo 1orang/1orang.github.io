@@ -1,0 +1,68 @@
+/* --- STYLE UNTUK DROPDOWN --- */
+
+/* Gaya utama dropdown */
+.dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    border-radius: 8px;
+}
+
+/* Hover pada dropdown */
+.dropdown .dropdown-toggle:hover {
+    background-color: #0bdb31;
+    color: white;
+}
+
+/* Ikon panah animasi */
+.dropdown .bx-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+/* Saat dropdown dibuka */
+.dropdown.active .bx-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Style menu dalam dropdown */
+.dropdown .dropdown-content {
+    display: none;
+    flex-direction: column;
+    background-color: #6209df;
+    margin-left: 20px;
+    padding: 5px 0;
+    border-left: 3px solid #00bcd4;
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+/* Tampilkan dropdown saat aktif */
+.dropdown.active .dropdown-content {
+    display: flex;
+    max-height: 150px;
+    transition: max-height 0.3s ease-in;
+}
+
+/* Style item di dalam dropdown */
+.dropdown .dropdown-content a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #da0505;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+/* Hover pada item dalam dropdown */
+.dropdown .dropdown-content a:hover {
+    background-color: #00bcd4;
+    color: rgb(255, 255, 255);
+}
